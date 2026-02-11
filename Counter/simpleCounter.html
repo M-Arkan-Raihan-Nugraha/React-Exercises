@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Simple Counter</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const container = document.getElementById("root");
+      const app = ReactDOM.createRoot(container);
+
+      function Counter() {
+        const [angka, setAngka] = React.useState(0);
+
+        function Tambah() {
+          setAngka(angka + 1);
+        }
+
+        function Kurang() {
+          setAngka(angka - 1);
+        }
+
+        function Reset() {
+          setAngka(0);
+        }
+
+        function Tombol({ title }) {
+          return (
+            <button onClick={title === "-" ? Kurang : Tambah}>{title}</button>
+          );
+        }
+
+        function ResetBtn() {
+          return <button onClick={Reset}>Reset</button>;
+        }
+
+        return (
+          <>
+            <Tombol title="-" />
+            <span style={{margin: "10px"}}>{angka}</span>
+            <Tombol title="+" />
+            <br/> 
+            <ResetBtn style={{margin: "10px"}}/>
+          </>
+        );
+      }
+
+      // Render komponen utama
+      app.render(<Counter />);
+    </script>
+  </body>
+</html>
